@@ -1,6 +1,6 @@
 @extends('Layout')
 
-@section('title', 'Contact Us - EcoSport')
+@section('title', 'Contact Us - Store4U')
 
 @section('content')
 
@@ -42,7 +42,7 @@
                                 name="name" 
                                 required
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-eco-green focus:border-transparent transition-all"
-                                placeholder="John Doe"
+                                placeholder="You Name"
                             >
                         </div>
                         
@@ -57,7 +57,7 @@
                                 name="email" 
                                 required
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-eco-green focus:border-transparent transition-all"
-                                placeholder="john@example.com"
+                                placeholder="YourEmail@gmail.com"
                             >
                         </div>
                         
@@ -142,8 +142,8 @@
                                 </div>
                                 <div>
                                     <h3 class="font-semibold text-text-main mb-1">Email</h3>
-                                    <a href="mailto:contact@ecosport.com" class="text-eco-green hover:underline">
-                                        contact@ecosport.com
+                                    <a href="mailto:contact@store4u.com" class="text-eco-green hover:underline">
+                                        contact@store4u.com
                                     </a>
                                     <p class="text-sm text-text-muted mt-1">I typically respond within 24 hours</p>
                                 </div>
@@ -159,9 +159,9 @@
                                 <div>
                                     <h3 class="font-semibold text-text-main mb-1">Phone</h3>
                                     <a href="tel:+1234567890" class="text-eco-green hover:underline">
-                                        +1 (234) 567-890
+                                        +212 (234) 567-890
                                     </a>
-                                    <p class="text-sm text-text-muted mt-1">Monday - Friday, 9am - 6pm EST</p>
+                                    <p class="text-sm text-text-muted mt-1">Monday - Friday, 9am - 6pm GMT+0</p>
                                 </div>
                             </div>
                             
@@ -176,8 +176,8 @@
                                 <div>
                                     <h3 class="font-semibold text-text-main mb-1">Location</h3>
                                     <p class="text-text-muted">
-                                        Based in the USA<br>
-                                        Shipping worldwide
+                                        Based in the Morocco<br>
+                                        Shipping Only in Tanger 
                                     </p>
                                 </div>
                             </div>
@@ -191,7 +191,7 @@
                         <div class="space-y-3">
                             <div>
                                 <h4 class="font-semibold mb-1">Shipping Time</h4>
-                                <p class="text-green-100 text-sm">Usually 3-7 business days within the US</p>
+                                <p class="text-green-100 text-sm">Usually 3-7 business days within the Morocco</p>
                             </div>
                             <div>
                                 <h4 class="font-semibold mb-1">Returns</h4>

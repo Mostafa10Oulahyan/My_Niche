@@ -10,7 +10,7 @@
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8">
             <a href="/" class="text-text-main hover:text-eco-green transition-colors font-medium">Home</a>
-            <a href="/products" class="text-text-main hover:text-eco-green transition-colors font-medium">Shop</a>
+            {{-- <a href="/products" class="text-text-main hover:text-eco-green transition-colors font-medium">Shop</a> --}}
             <a href="/about" class="text-text-main hover:text-eco-green transition-colors font-medium">About Us</a>
             <a href="/contact" class="text-text-main hover:text-eco-green transition-colors font-medium">Contact</a>
         </div>
@@ -39,7 +39,7 @@
     <!-- Mobile Navigation -->
     <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 space-y-2 border-t pt-4">
         <a href="/" class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Home</a>
-        <a href="/products" class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Shop</a>
+        {{-- <a href="/products" class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Shop</a> --}}
         <a href="/about" class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">About Us</a>
         <a href="/contact" class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Contact</a>
     </div>

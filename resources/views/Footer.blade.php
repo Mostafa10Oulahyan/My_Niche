@@ -4,7 +4,7 @@
         <div>
             <div class="flex items-center space-x-2 mb-4">
                 <a href="/" class="flex items-center space-x-2">
-                <img src="{{ asset('images/store4u_logo (1).png') }}" alt="Store4U Logo" class="h-12 w-auto">
+                <img src="{{ asset('images/store4u_logo (1).png') }}" alt="Store4U Logo" class="h-12 w-auto mix-blend-Multiply">
             </a>
             </div>
             <p class="text-gray-400 text-sm">Premium eco-friendly sport products for athletes who care about the planet.</p>
@@ -15,7 +15,7 @@
             <h3 class="font-semibold mb-4 text-eco-green">Quick Links</h3>
             <ul class="space-y-2 text-sm text-gray-400">
                 <li><a href="/" class="hover:text-eco-green transition-colors">Home</a></li>
-                <li><a href="/products" class="hover:text-eco-green transition-colors">Shop</a></li>
+                {{-- <li><a href="/products" class="hover:text-eco-green transition-colors">Shop</a></li> --}}
                 <li><a href="/about" class="hover:text-eco-green transition-colors">About Us</a></li>
                 <li><a href="/contact" class="hover:text-eco-green transition-colors">Contact</a></li>
             </ul>
@@ -25,9 +25,12 @@
         <div>
             <h3 class="font-semibold mb-4 text-eco-green">Categories</h3>
             <ul class="space-y-2 text-sm text-gray-400">
-                <li><a href="/products?category=tshirts" class="hover:text-eco-green transition-colors">T-Shirts</a></li>
+                {{-- <li><a href="/products?category=tshirts" class="hover:text-eco-green transition-colors">T-Shirts</a></li>
                 <li><a href="/products?category=shoes" class="hover:text-eco-green transition-colors">Sneakers</a></li>
-                <li><a href="/products?category=accessories" class="hover:text-eco-green transition-colors">Accessories</a></li>
+                <li><a href="/products?category=accessories" class="hover:text-eco-green transition-colors">Accessories</a></li> --}}
+                <li><a href="#" class="hover:text-eco-green transition-colors">T-Shirts</a></li>
+                <li><a href="#" class="hover:text-eco-green transition-colors">Sneakers</a></li>
+                <li><a href="#" class="hover:text-eco-green transition-colors">Accessories</a></li>
             </ul>
         </div>
         
@@ -39,7 +42,7 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                     </svg>
-                    <span>contact@ecosport.com</span>
+                    <span>contact@store4u.com</span>
                 </li>
                 <li class="flex items-center space-x-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

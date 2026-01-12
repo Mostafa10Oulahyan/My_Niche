@@ -1,6 +1,6 @@
 @extends('Layout')
 
-@section('title', 'Shop - EcoSport Premium Products')
+@section('title', 'Shop - Store4U Premium Products')
 
 @section('content')
 

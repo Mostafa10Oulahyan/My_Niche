@@ -1,6 +1,6 @@
 @extends('Layout')
 
-@section('title', 'About Us - EcoSport Story')
+@section('title', 'About Us - Store4U Story')
 
 @section('content')
 
@@ -35,7 +35,7 @@
                 </h2>
                 <div class="prose prose-lg max-w-none text-text-muted">
                     <p class="mb-4 text-lg leading-relaxed">
-                        Hi! I'm the person behind EcoSport. What started as a personal mission to find sustainable sport gear 
+                        Hi! I'm the person behind Store4U. What started as a personal mission to find sustainable sport gear 
                         has grown into a carefully curated collection of eco-friendly products for athletes who care about 
                         their performance <span class="text-eco-green font-semibold">and</span> the planet.
                     </p>
@@ -131,7 +131,7 @@
     <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto">
             <h2 class="text-3xl font-bold text-center text-text-main mb-12">
-                Why Choose <span class="text-eco-green">EcoSport</span>?
+                Why Choose <span class="text-eco-green">Store4U</span>?
             </h2>
             
             <div class="space-y-6">
@@ -212,7 +212,10 @@
                 Every purchase supports sustainable manufacturing and helps reduce the environmental impact of sports gear.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/products" class="inline-block px-8 py-4 bg-cta-accent hover:bg-yellow-500 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
+                {{-- <a href="/products" class="inline-block px-8 py-4 bg-cta-accent hover:bg-yellow-500 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
+                    Shop Now
+                </a> --}}
+                <a href="#" class="inline-block px-8 py-4 bg-cta-accent hover:bg-yellow-500 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
                     Shop Now
                 </a>
                 <a href="/contact" class="inline-block px-8 py-4 bg-eco-green hover:bg-green-700 text-white font-semibold rounded-lg transition-colors">
