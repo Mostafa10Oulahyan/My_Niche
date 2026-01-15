@@ -19,7 +19,7 @@
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 {{-- <a href="/products" class="inline-block px-8 py-4 bg-cta-accent hover:bg-yellow-500 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"> --}}
-                <a href="#" class="inline-block px-8 py-4 bg-cta-accent hover:bg-yellow-500 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
+                <a href="/products" class="inline-block px-8 py-4 bg-cta-accent hover:bg-yellow-500 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
                     Shop Now
                 </a>
                 <a href="/about" class="inline-block px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold rounded-lg border-2 border-white/30 transition-all duration-300">
@@ -154,7 +154,7 @@
         
         <div class="text-center mt-12">
             {{-- <a href="/products" class="inline-block px-8 py-3 bg-eco-green hover:bg-green-700 text-white font-semibold rounded-lg transition-colors"> --}}
-            <a href="#" class="inline-block px-8 py-3 bg-eco-green hover:bg-green-700 text-white font-semibold rounded-lg transition-colors">
+            <a href="/products" class="inline-block px-8 py-3 bg-eco-green hover:bg-green-700 text-white font-semibold rounded-lg transition-colors">
                 View All Products
             </a>
         </div>
@@ -170,7 +170,7 @@
         <p class="text-lg mb-8 text-green-100 max-w-2xl mx-auto">
             Join thousands of athletes who choose sustainable performance gear
         </p>
-        <a href="#" class="inline-block px-8 py-4 bg-cta-accent hover:bg-yellow-500 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
+        <a href="/products" class="inline-block px-8 py-4 bg-cta-accent hover:bg-yellow-500 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
         {{-- <a href="/products" class="inline-block px-8 py-4 bg-cta-accent hover:bg-yellow-500 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"> --}}
             Start Shopping
         </a>

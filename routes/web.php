@@ -8,9 +8,11 @@ Route::get('/', function () {
 });
 
 // Products/Shop Page
-Route::get('/products', function () {
-    return view('Products');
-});
+// Route::get('/products', function () {
+//     return view('Products');
+// });
+Route::get("/products",
+[App\Http\Controllers\ControllerProduct::class,'getProducts']);
 
 // About Us Page
 Route::get('/about', function () {

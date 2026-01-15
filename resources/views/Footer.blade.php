@@ -15,7 +15,7 @@
             <h3 class="font-semibold mb-4 text-eco-green">Quick Links</h3>
             <ul class="space-y-2 text-sm text-gray-400">
                 <li><a href="/" class="hover:text-eco-green transition-colors">Home</a></li>
-                {{-- <li><a href="/products" class="hover:text-eco-green transition-colors">Shop</a></li> --}}
+                <li><a href="/products" class="hover:text-eco-green transition-colors">Shop</a></li>
                 <li><a href="/about" class="hover:text-eco-green transition-colors">About Us</a></li>
                 <li><a href="/contact" class="hover:text-eco-green transition-colors">Contact</a></li>
             </ul>
