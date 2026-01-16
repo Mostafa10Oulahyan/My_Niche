@@ -49,6 +49,7 @@
         color: #666;
         font-size: 14px;
     }
+
 </style>
 
 <div class="products-container">
@@ -56,6 +57,8 @@
     <table class="products-table">
         <thead>
             <tr>
+
+                <th>Id Product</th>
                 <th>Image</th>
                 <th>Name</th>
                 <th>Category</th>
@@ -65,6 +68,7 @@
         <tbody>
         @foreach($prod as $p)
             <tr>
+                <td>{{ $p->id }}</td>
                 <td><img src="{{ $p->image }}" alt="{{ $p->nom }}" class="product-image"></td>
                 <td class="product-name">{{ $p->nom }}</td>
                 <td class="product-category">{{ $p->categorie }}</td>
@@ -73,6 +77,10 @@
         @endforeach
         </tbody>
     </table>
+    {{-- <div class="pagination-links">
+        {{$prod->links()}}
+    </div> --}}
+    {{ $prod->links('vendor.pagination.custom') }}
 </div>
 
 @endsection

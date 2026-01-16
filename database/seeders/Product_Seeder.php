@@ -15,7 +15,7 @@ class Product_Seeder extends Seeder
     public function run(): void
     {
         // Delete all existing products before seeding
-        Product::truncate();
+        // Product::truncate();
 
         $faker = Faker::create();
         for ($i = 0; $i < 15; $i++) {
