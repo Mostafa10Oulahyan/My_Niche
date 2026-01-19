@@ -1,18 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ControllerProduct;
+use App\Http\Controllers\HelloWorldController;
+use App\Http\Controllers\ProductsResourceCrud;
 // Home Page
 Route::get('/', function () {
     return view('Home');
 });
+Route::get("/hello",HelloWorldController::class);
+Route::resource("products",ProductsResourceCrud::class);
 
 // Products/Shop Page
 // Route::get('/products', function () {
 //     return view('Products');
 // });
 Route::get("/products",
-[App\Http\Controllers\ControllerProduct::class,'getProducts']);
+[ControllerProduct::class,'getProducts']);
 
 // About Us Page
 Route::get('/about', function () {
