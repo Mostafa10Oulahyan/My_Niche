@@ -40,6 +40,9 @@
         @include("Menu")
     </header>
     
+    <!-- Global flash messages (toasts) -->
+    @include('incs.flash')
+
     <main class="min-h-screen">
         @yield("content")
     </main>

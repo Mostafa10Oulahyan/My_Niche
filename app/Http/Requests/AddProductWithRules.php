@@ -21,26 +21,28 @@ class AddProductWithRules extends FormRequest
      */
     public function rules(): array
     {
-         return [
-            'n'=>'required|min:5',
-            'p'=>'required',
-            'c'=>'required|min:5',
-            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        // For create requests (POST) image is required. For update (PUT/PATCH), allow nullable image.
+        $imageRule = $this->isMethod('post') ? 'required|image|mimes:jpg,jpeg,png|max:2048' : 'nullable|image|mimes:jpg,jpeg,png|max:2048';
 
+        return [
+            'n' => 'required|min:5',
+            'p' => 'required',
+            'c' => 'required|min:5',
+            'image' => $imageRule,
         ];
     }
     public function messages()
     {
         return [
-            'n.required'=>'name is required',
-            'n.min'=>'too short enter more',
-            'p.required'=>'price is required',
-            'c.min'=>'too short enter more',
-            'c.required'=>'category is required',
-            'image.required'=>'image is required',
-            'image.image'=>'file must be an image',
-            'image.mimes'=>'image must be jpg , jpeg or png',
-            'image.max'=>'image size must be less than 2MB',
+            'n.required' => 'name is required',
+            'n.min' => 'too short enter more',
+            'p.required' => 'price is required',
+            'c.min' => 'too short enter more',
+            'c.required' => 'category is required',
+            'image.required' => 'image is required',
+            'image.image' => 'file must be an image',
+            'image.mimes' => 'image must be jpg , jpeg or png',
+            'image.max' => 'image size must be less than 2MB',
 
         ];
     }

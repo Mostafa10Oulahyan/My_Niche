@@ -6,7 +6,7 @@ use App\Http\Requests\AddProductWithRules;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Cloudinary\Cloudinary;
-// use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class ProductsResourceCrud extends Controller
 {
@@ -84,15 +84,59 @@ class ProductsResourceCrud extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = Product::find($id);
+        return view('EditProduct')->with('pro', $product);
+        // equivalent a : 
+        // return view('EditProduct', ['pro' => $product]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AddProductWithRules $request, string $id)
     {
-        //
+        $request->validated();
+
+        // récupérer les nouvelles valeurs des champs :
+        $nom = $request->input('n');
+        $prix = $request->input('p');
+        $categorie = $request->input('c');
+        $image = '';
+
+
+
+        // récupérer l'objet Produit via l'id
+        $Produit = Product::find($id);
+
+
+        // update with save
+        $Produit->nom = $nom;
+        $Produit->prix = $prix;
+        $Produit->categorie = $categorie;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->getClientOriginalName();
+            // upload cloudinary
+            $cloudinary = new Cloudinary([
+                'cloud' => [
+                    'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+                    'api_key'    => env('CLOUDINARY_API_KEY'),
+                    'api_secret' => env('CLOUDINARY_API_SECRET'),
+                ],
+            ]);
+            $result = $cloudinary->uploadApi()->upload(
+                $request->file('image')->getRealPath(),
+                [
+                    'folder' => 'Store4u/productsPhotos',
+                ]
+            );
+
+            $image = $result['secure_url'];
+        } else {
+            $image = $Produit->image;
+        }
+        $Produit->image = $image;
+        $Produit->save();
+        return back()->with('successupdate', 'You have successfully updated a product.');
     }
 
     /**
@@ -100,6 +144,9 @@ class ProductsResourceCrud extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $Produit = Product::find($id);
+        // delete with delete
+        $Produit->delete();
+        return back()->with('successdelete', 'You have successfully deleted a product.');
     }
 }

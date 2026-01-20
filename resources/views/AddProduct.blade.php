@@ -13,7 +13,10 @@
                 <h2 class="text-center text-amber-50 text-4xl">Add New Product</h2>
                 
                 <div class="p-6">
-                        <form method="POST" action="/products" enctype="multipart/form-data">
+                        <form method="POST" action="/products" enctype="multipart/form-data"> 
+                            {{-- same  --}}
+                        {{-- <form method="POST" action="{{route('products.store')}}" enctype="multipart/form-data"> --}}
+                            
                             @csrf
 
                             <div class="mb-4">
