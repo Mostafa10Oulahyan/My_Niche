@@ -35,6 +35,13 @@
                     </div>
                     @error('p') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                 </div>
+                <div>
+                    <label for="s" class="block text-sm font-medium text-gray-700">Solde du produit</label>
+                    <div class="mt-1">
+                        <input id="s" name="s" type="text" value="{{ old('s', $pro->solde) }}" class="block w-full shadow-sm sm:text-sm border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" />
+                    </div>
+                    @error('s') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                </div>
 
                 <div>
                     <label for="image" class="block text-sm font-medium text-gray-700">Image du produit</label>

@@ -18,6 +18,8 @@
                     <th class="px-6 py-3 text-left text-sm font-semibold text-white">Name</th>
                     <th class="px-6 py-3 text-left text-sm font-semibold text-white">Category</th>
                     <th class="px-6 py-3 text-left text-sm font-semibold text-white">Price</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold text-white">Solde</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold text-white">Prix Fresh</th>
                     <th class="px-6 py-3 text-left text-sm font-semibold text-white">Actions</th>
 
                 </tr>
@@ -30,6 +32,8 @@
                     <td class="px-6 py-4 text-sm text-gray-800 font-medium align-top">{{ $p->nom }}</td>
                     <td class="px-6 py-4 text-sm text-gray-600 align-top">{{ $p->categorie }}</td>
                     <td class="px-6 py-4 text-sm text-green-600 font-semibold align-top">${{ $p->prix }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-600 align-top">{{ $p->solde }}%</td>
+                    <td class="px-6 py-4 text-sm text-gray-600 align-top">${{  $p->prix - $p->prix * $p->solde / 100}}</td>
                     <td class="px-6 py-4 text-sm text-gray-600 align-top">
                         <a href="{{ url('products/' . $p->id . '/edit') }}" class="text-blue-600 hover:text-blue-900">Edit</a>
                         {{-- <a href="{{ route('products.edit',$p->id) }}" class="text-blue-600 hover:text-blue-900">Edit</a> --}}

@@ -55,11 +55,13 @@ class ProductsResourceCrud extends Controller
         $nom = $request->input('n');
         $prix = $request->input('p');
         $categorie = $request->input('c');
+        $Solde = $request->input('s');
 
 
         $produit->nom = $nom;
         $produit->prix = $prix;
         $produit->categorie = $categorie;
+        $produit->solde = $Solde;
 
         // adapte le nom de colonne selon ta DB :
         // ex: image, image_url, photo, etc.
@@ -101,6 +103,7 @@ class ProductsResourceCrud extends Controller
         $nom = $request->input('n');
         $prix = $request->input('p');
         $categorie = $request->input('c');
+        $solde = $request->input('s');
         $image = '';
 
 
@@ -113,6 +116,7 @@ class ProductsResourceCrud extends Controller
         $Produit->nom = $nom;
         $Produit->prix = $prix;
         $Produit->categorie = $categorie;
+        $Produit->solde = $solde;
         if ($request->hasFile('image')) {
             $image = $request->file('image')->getClientOriginalName();
             // upload cloudinary

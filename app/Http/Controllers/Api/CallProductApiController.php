@@ -49,6 +49,7 @@ class CallProductApiController extends Controller
     $produit->nom = $request->input('n');
     $produit->prix = $request->input('p');
     $produit->categorie = $request->input('c');
+    $produit->solde = $request->input('s');
     $produit->image = $imageUrl;
 
     $produit->save();

@@ -34,6 +34,13 @@
                                    <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
+                            <div class="mb-4">
+                                <label for="s" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">{{ __('Solde du produit') }}</label>
+                                <input id="s" type="text" class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 rounded-md text-gray-700 dark:text-gray-100" name="s">
+                                @error('s')
+                                   <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
 
                             <div class="mb-4">
                                 <label for="c" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">{{ __('Catégorie du produit') }}</label>
