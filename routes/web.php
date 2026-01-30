@@ -16,10 +16,10 @@ Route::get("/hello", HelloWorldController::class);
 // Route::get('/products', function () {
 //     return view('Products');
 // });
-Route::get(
-    "/products",
-    [ControllerProduct::class, 'getProducts']
-);
+// Route::get(
+//     "/products",
+//     [ControllerProduct::class, 'index']
+// );
 
 // About Us Page
 Route::get('/about', function () {
@@ -47,6 +47,8 @@ Route::post('/contact', function () {
     return redirect('/contact')->with('success', 'Thank you for your message! I will respond as soon as possible.');
 });
 
+Route::get("/prodwiyat", [ControllerProduct::class, "getProducts"]);
+Route::get("/pro/{id}", [ControllerProduct::class, "showProd"])->name('pro.showProd');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -63,6 +65,6 @@ Route::middleware(['adminuser'])->group(function () {
     Route::resource("products", ProductsResourceCrud::class);
     Route::get('/espaceadmin', [ProductsResourceCrud::class, 'espaceadmin']);
 });
-// middlzware of user
+//middleware of user
 Route::get('/espaceclient', [ProductsResourceCrud::class, 'espaceclient'])->middleware('useruser');
 require __DIR__ . '/auth.php';

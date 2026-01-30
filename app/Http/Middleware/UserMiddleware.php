@@ -16,15 +16,15 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-         $user = Auth::user();
+        //  $user = Auth::user();
 
-        if (!$user) {
-            return redirect()->route('login');
-        }
+        // if (!$user) {
+        //     return redirect()->route('login');
+        // }
 
-        if ($user->role !== User::USER_ROLE) {
-            return redirect()->route('login');
-        }
+        // if ($user->role !== User::USER_ROLE) {
+        //     return redirect()->route('login');
+        // }
 
 
         return $next($request);

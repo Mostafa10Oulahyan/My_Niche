@@ -6,68 +6,172 @@
                 <img src="{{ asset('images/store4u_logo (1).png') }}" alt="Store4U Logo" class="h-12 w-auto">
             </a>
         </div>
-        
+
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8">
             <a href="/" class="text-text-main hover:text-eco-green transition-colors font-medium">Home</a>
-            {{-- <a href="/products" class="text-text-main hover:text-eco-green transition-colors font-medium">Shop</a> --}}
-            <a href="/products" class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Products</a>
-            
+            {{-- <a href="/products" class="text-text-main hover:text-eco-green transition-colors font-medium">Shop</a>
+            --}}
+            <a href="{{url('/prodwiyat')}}"
+                class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Products</a>
+
             <a href="/about" class="text-text-main hover:text-eco-green transition-colors font-medium">About Us</a>
             <a href="/contact" class="text-text-main hover:text-eco-green transition-colors font-medium">Contact</a>
+
+            @if(Auth::user())
+                @if(Auth::user()->role === 'ADMIN')
+                    <a href="{{ route('products.create') }}"
+                        class="text-text-main hover:text-eco-green transition-colors font-medium">Add Product</a>
+                    <a href="/espaceadmin" class="text-text-main hover:text-eco-green transition-colors font-medium">Admin
+                        Space</a>
+                @endif
+                @if(Auth::user()->role === 'USER')
+                    <a href="/espaceclient" class="text-text-main hover:text-eco-green transition-colors font-medium">Client
+                        Space</a>
+                @endif
+            @endif
         </div>
-        
+
         <!-- Cart & Actions -->
         <div class="flex items-center space-x-4">
+            @if (Route::has('login'))
+                <div class="hidden md:flex items-center space-x-4 mr-2">
+                    @auth
+                        <div class="hidden sm:flex sm:items-center sm:ms-6">
+                            <x-dropdown align="right" width="48">
+                                <x-slot name="trigger">
+                                    <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                        <div>{{ Auth::user()->name }}</div>
+            
+                                        <div class="ms-1">
+                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </x-slot>
+            
+                                <x-slot name="content">
+                                    
+
+                                    <x-dropdown-link :href="route('profile.edit')">
+                                        {{ __('Profile') }}
+                                    </x-dropdown-link>
+            
+                                    <!-- Authentication -->
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+            
+                                        <x-dropdown-link :href="route('logout')"
+                                                onclick="event.preventDefault();
+                                                            this.closest('form').submit();">
+                                            {{ __('Log Out') }}
+                                        </x-dropdown-link>
+                                    </form>
+                                </x-slot>
+                            </x-dropdown>
+                        </div>
+                    @else
+                        <a href="{{ route('login') }}"
+                            class="text-text-main hover:text-eco-green transition-colors font-medium">Log in</a>
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}"
+                                class="text-text-main hover:text-eco-green transition-colors font-medium">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
             <button class="relative p-2 hover:bg-section-bg rounded-full transition-colors">
                 <svg class="w-6 h-6 text-text-main" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
-                <span id="cartCount" class="absolute -top-1 -right-1 bg-eco-green text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                <span id="cartCount"
+                    class="absolute -top-1 -right-1 bg-eco-green text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
             </button>
-            
+
             <!-- Mobile Menu Button -->
             <button id="mobileMenuBtn" class="md:hidden p-2 hover:bg-section-bg rounded-lg transition-colors">
                 <svg id="menuIcon" class="w-6 h-6 text-text-main" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
-                <svg id="closeIcon" class="w-6 h-6 text-text-main hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                <svg id="closeIcon" class="w-6 h-6 text-text-main hidden" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
         </div>
     </div>
-    
+
     <!-- Mobile Navigation -->
     <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 space-y-2 border-t pt-4">
         <a href="/" class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Home</a>
-        {{-- <a href="/products" class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Shop</a> --}}
-        <a href="/about" class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">About Us</a>
-        <a href="/products" class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Products</a>
-        <a href="/contact" class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Contact</a>
-        
+        {{-- <a href="/products"
+            class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Shop</a> --}}
+        <a href="/about" class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">About
+            Us</a>
+        <a href="/prodwiyat"
+            class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Products</a>
+        <a href="/contact"
+            class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Contact</a>
+
+        @if(Auth::user())
+            @if(Auth::user()->role === 'ADMIN')
+                <a href="{{ route('products.create') }}"
+                    class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Add Product</a>
+                <a href="/espaceadmin"
+                    class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Admin Space</a>
+            @endif
+            @if(Auth::user()->role === 'USER')
+                <a href="/espaceclient"
+                    class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Client Space</a>
+            @endif
+        @endif
+
+
+        @if (Route::has('login'))
+            <div class="pt-4 border-t border-gray-200">
+                @auth
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                                            this.closest('form').submit();"
+                            class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">
+                            {{ __('Log Out') }}
+                        </a>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}"
+                        class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Log in</a>
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}"
+                            class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Register</a>
+                    @endif
+                @endauth
+            </div>
+        @endif
     </div>
 </nav>
 
 <script>
     // Mobile Menu Toggle
-    document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+    document.getElementById('mobileMenuBtn').addEventListener('click', function () {
         const mobileMenu = document.getElementById('mobileMenu');
         const menuIcon = document.getElementById('menuIcon');
         const closeIcon = document.getElementById('closeIcon');
-        
+
         mobileMenu.classList.toggle('hidden');
         menuIcon.classList.toggle('hidden');
         closeIcon.classList.toggle('hidden');
     });
-    
+
     // Cart counter functionality
-    window.updateCartCount = function() {
+    window.updateCartCount = function () {
         const cartCount = document.getElementById('cartCount');
         let currentCount = parseInt(cartCount.textContent) || 0;
         currentCount++;
         cartCount.textContent = currentCount;
-        
+
         // Add animation
         cartCount.classList.add('scale-125');
         setTimeout(() => {

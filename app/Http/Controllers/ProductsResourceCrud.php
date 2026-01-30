@@ -15,9 +15,8 @@ class ProductsResourceCrud extends Controller
      */
     public function index()
     {
-        //
-    }
 
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -36,7 +35,7 @@ class ProductsResourceCrud extends Controller
         $cloudinary = new Cloudinary([
             'cloud' => [
                 'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
-                'api_key'    => env('CLOUDINARY_API_KEY'),
+                'api_key' => env('CLOUDINARY_API_KEY'),
                 'api_secret' => env('CLOUDINARY_API_SECRET'),
             ],
         ]);
@@ -78,7 +77,7 @@ class ProductsResourceCrud extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
@@ -123,7 +122,7 @@ class ProductsResourceCrud extends Controller
             $cloudinary = new Cloudinary([
                 'cloud' => [
                     'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
-                    'api_key'    => env('CLOUDINARY_API_KEY'),
+                    'api_key' => env('CLOUDINARY_API_KEY'),
                     'api_secret' => env('CLOUDINARY_API_SECRET'),
                 ],
             ]);
@@ -152,5 +151,27 @@ class ProductsResourceCrud extends Controller
         // delete with delete
         $Produit->delete();
         return back()->with('successdelete', 'You have successfully deleted a product.');
+    }
+    public function espaceadmin()
+    {
+        $products = Product::paginate(10);
+        return view('espaceadmin', ['prod' => $products]);
+    }
+    public function espaceclient(Request $request)
+    {
+        $query = Product::query();
+
+        // Filter by category if provided
+        if ($request->has('category') && $request->filled('category')) { // category of select 
+            $query->where('categorie', $request->category);
+        }
+
+        $products = $query->paginate(10);
+        $categories = Product::select('categorie')->distinct()->orderBy('categorie')->get();
+
+        return view('espaceclient', [
+            'prod' => $products,
+            'categories' => $categories
+        ]);
     }
 }

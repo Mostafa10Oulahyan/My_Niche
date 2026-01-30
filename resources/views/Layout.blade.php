@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Store4U - Premium Sport Products')</title>
-    
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Custom Tailwind Configuration -->
     <script>
         tailwind.config = {
@@ -28,27 +30,30 @@
             }
         }
     </script>
-    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <style>
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
     </style>
 </head>
+
 <body class="bg-white text-text-main">
     <header class="sticky top-0 z-50 bg-white shadow-sm">
         @include("Menu")
     </header>
-    
+
     <!-- Global flash messages (toasts) -->
     @include('incs.flash')
 
     <main class="min-h-screen">
         @yield("content")
     </main>
-    
+
     <footer class="bg-text-main text-white">
         @include("Footer")
     </footer>
 </body>
+
 </html>
