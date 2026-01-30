@@ -27,6 +27,7 @@ class AddProductWithRules extends FormRequest
         return [
             'n' => 'required|min:5',
             'p' => 'required',
+            's' => 'required',
             'c' => 'required|min:5',
             'image' => $imageRule,
         ];
@@ -37,6 +38,7 @@ class AddProductWithRules extends FormRequest
             'n.required' => 'name is required',
             'n.min' => 'too short enter more',
             'p.required' => 'price is required',
+            's.required' => 'solde is required',
             'c.min' => 'too short enter more',
             'c.required' => 'category is required',
             'image.required' => 'image is required',

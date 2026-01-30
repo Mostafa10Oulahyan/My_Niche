@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControllerProduct;
 use App\Http\Controllers\HelloWorldController;
@@ -8,15 +9,17 @@ use App\Http\Controllers\ProductsResourceCrud;
 Route::get('/', function () {
     return view('Home');
 });
-Route::get("/hello",HelloWorldController::class);
-Route::resource("products",ProductsResourceCrud::class);
+Route::get("/hello", HelloWorldController::class);
+
 
 // Products/Shop Page
 // Route::get('/products', function () {
 //     return view('Products');
 // });
-Route::get("/products",
-[ControllerProduct::class,'getProducts']);
+Route::get(
+    "/products",
+    [ControllerProduct::class, 'getProducts']
+);
 
 // About Us Page
 Route::get('/about', function () {
@@ -43,3 +46,23 @@ Route::post('/contact', function () {
 
     return redirect('/contact')->with('success', 'Thank you for your message! I will respond as soon as possible.');
 });
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// middleware of admin
+Route::middleware(['adminuser'])->group(function () {
+    Route::resource("products", ProductsResourceCrud::class);
+    Route::get('/espaceadmin', [ProductsResourceCrud::class, 'espaceadmin']);
+});
+// middlzware of user
+Route::get('/espaceclient', [ProductsResourceCrud::class, 'espaceclient'])->middleware('useruser');
+require __DIR__ . '/auth.php';
