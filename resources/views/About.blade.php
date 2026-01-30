@@ -215,7 +215,7 @@
                 {{-- <a href="/products" class="inline-block px-8 py-4 bg-cta-accent hover:bg-yellow-500 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
                     Shop Now
                 </a> --}}
-                <a href="Prodwiyat" class="inline-block px-8 py-4 bg-cta-accent hover:bg-yellow-500 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
+                <a href="prodwiyat" class="inline-block px-8 py-4 bg-cta-accent hover:bg-yellow-500 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
                     Shop Now
                 </a>
                 <a href="/contact" class="inline-block px-8 py-4 bg-eco-green hover:bg-green-700 text-white font-semibold rounded-lg transition-colors">

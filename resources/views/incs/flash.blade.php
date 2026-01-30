@@ -44,7 +44,7 @@
             <script>
                 setTimeout(function(){document.getElementById('{{ $toastId }}-update')?.remove();},5000);
                 // redirect to products after 6 seconds
-                setTimeout(function(){ window.location.href = '{{ url('/products') }}'; }, 3000);
+                setTimeout(function(){ window.location.href = '{{ url('/prodwiyat') }}'; }, 3000);
             </script>
         @endif
 
