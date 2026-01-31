@@ -12,7 +12,8 @@
 
                     @if(Auth::user()->role === 'ADMIN')
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <a href="{{ route('products.create') }}"
+                            <!-- <a href="{{ url('/products/create') }}" -->
+                            <a href="{{ route('web.products.create') }}"
                                 class="block p-6 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition">
                                 <h3 class="font-bold text-blue-800">Add New Product</h3>
                                 <p class="text-blue-600">Create a new product listing in the store.</p>

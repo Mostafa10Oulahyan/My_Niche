@@ -10,17 +10,16 @@
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8">
             <a href="/" class="text-text-main hover:text-eco-green transition-colors font-medium">Home</a>
-            {{-- <a href="/products" class="text-text-main hover:text-eco-green transition-colors font-medium">Shop</a>
-            --}}
-            <a href="{{url('/prodwiyat')}}"
+            <!-- <a href="{{ url("products") }}">Products</a> -->
+            <a href="{{route('visiteurs.products')}}"
                 class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Products</a>
-
             <a href="/about" class="text-text-main hover:text-eco-green transition-colors font-medium">About Us</a>
-            <a href="/contact" class="text-text-main hover:text-eco-green transition-colors font-medium">Contact</a>
+
+            <!-- <a href="{{ url('/email') }}" class="text-text-main hover:text-eco-green transition-colors font-medium">Contact</a> -->
 
             @if(Auth::user())
                 @if(Auth::user()->role === 'ADMIN')
-                    <a href="{{ route('products.create') }}"
+                    <a href="{{ route('web.products.create') }}"
                         class="text-text-main hover:text-eco-green transition-colors font-medium">Add Product</a>
                     <a href="/espaceadmin" class="text-text-main hover:text-eco-green transition-colors font-medium">Admin
                         Space</a>
@@ -28,6 +27,8 @@
                 @if(Auth::user()->role === 'USER')
                     <a href="/espaceclient" class="text-text-main hover:text-eco-green transition-colors font-medium">Client
                         Space</a>
+                    <a href="{{ route("email.form") }}" class="text-text-main hover:text-eco-green transition-colors font-medium">Contact</a>
+                    <!-- <a href="{{ url("/email") }}" class="text-text-main hover:text-eco-green transition-colors font-medium">Contact</a> -->
                 @endif
             @endif
         </div>
@@ -40,31 +41,34 @@
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
-                                    <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                    <button
+                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                         <div>{{ Auth::user()->name }}</div>
-            
+
                                         <div class="ms-1">
-                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                    clip-rule="evenodd" />
                                             </svg>
                                         </div>
                                     </button>
                                 </x-slot>
-            
+
                                 <x-slot name="content">
-                                    
+
 
                                     <x-dropdown-link :href="route('profile.edit')">
                                         {{ __('Profile') }}
                                     </x-dropdown-link>
-            
+
                                     <!-- Authentication -->
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-            
-                                        <x-dropdown-link :href="route('logout')"
-                                                onclick="event.preventDefault();
-                                                            this.closest('form').submit();">
+
+                                        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+                                                                            this.closest('form').submit();">
                                             {{ __('Log Out') }}
                                         </x-dropdown-link>
                                     </form>
@@ -110,14 +114,13 @@
             class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Shop</a> --}}
         <a href="/about" class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">About
             Us</a>
-        <a href="/prodwiyat"
+        <a href="{{route('web.products.index')}}"
             class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Products</a>
-        <a href="/contact"
-            class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Contact</a>
+
 
         @if(Auth::user())
             @if(Auth::user()->role === 'ADMIN')
-                <a href="{{ route('products.create') }}"
+                <a href="{{ route('web.products.create') }}"
                     class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Add Product</a>
                 <a href="/espaceadmin"
                     class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Admin Space</a>
@@ -135,7 +138,7 @@
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                            this.closest('form').submit();"
+                                                                                            this.closest('form').submit();"
                             class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">
                             {{ __('Log Out') }}
                         </a>

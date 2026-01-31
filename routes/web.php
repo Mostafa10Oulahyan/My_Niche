@@ -31,25 +31,6 @@ Route::get('/contact', function () {
     return view('Contact');
 });
 
-// Contact Form Submission
-Route::post('/contact', function () {
-    // Validate the form data
-    request()->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
-        'subject' => 'nullable|string|max:255',
-        'message' => 'required|string',
-    ]);
-
-    // Here you would typically send an email or save to database
-    // For now, we'll just return with a success message
-
-    return redirect('/contact')->with('success', 'Thank you for your message! I will respond as soon as possible.');
-});
-
-Route::get("/prodwiyat", [ControllerProduct::class, "getProducts"]);
-Route::get("/pro/{id}", [ControllerProduct::class, "showProd"])->name('pro.showProd');
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -59,12 +40,24 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+// visiters
+Route::get('/visiteurs/products', [ControllerProduct::class, 'getProductsVisiteurs'])->name('visiteurs.products');
 // middleware of admin
 Route::middleware(['adminuser'])->group(function () {
-    Route::resource("products", ProductsResourceCrud::class);
+    Route::resource('products', ProductsResourceCrud::class)->names('web.products')->except(['show']); // because this option for client
+    // do in route web.products.method or in url product/create | products  etc ...
     Route::get('/espaceadmin', [ProductsResourceCrud::class, 'espaceadmin']);
 });
+
+// Public/Shared Product Details Route
+Route::get('/products/{product}', [ProductsResourceCrud::class, 'show'])->name('web.products.show');
 //middleware of user
-Route::get('/espaceclient', [ProductsResourceCrud::class, 'espaceclient'])->middleware('useruser');
+// Email Routes
+use App\Http\Controllers\EmailController;
+Route::middleware('useruser')->group(function () {
+    Route::get('/email', [EmailController::class, 'email'])->name('email.form');
+    Route::post('/send/email', [EmailController::class, 'sendEmail'])->name('send.email');
+    Route::get('/espaceclient', [ProductsResourceCrud::class, 'espaceclient']);
+});
+
 require __DIR__ . '/auth.php';

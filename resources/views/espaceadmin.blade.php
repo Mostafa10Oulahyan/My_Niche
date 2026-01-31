@@ -35,9 +35,11 @@
                             <td class="px-6 py-4 text-sm text-gray-600 align-top">{{  $p->prix - $p->prix * $p->solde / 100}} DH
                             </td>
                             <td class="px-6 py-4 text-sm text-gray-600 align-top">
-                                <a href="{{ url('products/' . $p->id . '/edit') }}"
-                                    class="text-blue-600 hover:text-blue-900">Edit</a>
+                            <!-- <a href={{ route('web.products.edit', $p->id) }}></a>     -->
+                            <a href="{{ url('products/' . $p->id . '/edit') }}"
+                                class="text-blue-600 hover:text-blue-900">Edit</a>
                                 <form action="{{ url('products/' . $p->id) }}" method="POST" class="inline-block">
+                                <!-- <form action={{ route('web.products.destroy', $p->id) }} method="POST" class="inline-block"> -->
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-600 hover:text-red-900"

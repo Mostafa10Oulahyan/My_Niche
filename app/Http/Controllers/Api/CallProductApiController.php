@@ -58,7 +58,7 @@ class CallProductApiController extends Controller
     return response()->json([
         'success' => true,
         'message' => 'Product created successfully',
-        'prodwiyat' => $produit  // in react should be called res.data.prodwiyat
+        'product' => $produit  // in react should be called res.data.product
     ], 201);
     }
 

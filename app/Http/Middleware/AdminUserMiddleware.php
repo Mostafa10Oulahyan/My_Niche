@@ -16,15 +16,15 @@ class AdminUserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // $user = Auth::user();
-        // // Pas connecté
-        // if (!$user) {
-        //     return redirect()->route('login');
-        // }
-        // // Pas ADMIN
-        // if ($user->role !== User::ADMIN_ROLE) {
-        //     return redirect()->route('login');
-        // }
+        $user = Auth::user();
+        // Pas connecté
+        if (!$user) {
+            return redirect()->route('login');
+        }
+        // Pas ADMIN
+        if ($user->role !== User::ADMIN_ROLE) {
+            return redirect()->route('login');
+        }
         return $next($request);
     }
 }

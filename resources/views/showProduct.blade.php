@@ -62,7 +62,7 @@
                             </svg>
                             <span>Add to Cart</span>
                         </button>
-                        <a href="{{ url('prodwiyat') }}"
+                        <a href="{{ url('/espaceclient') }}"
                             class="flex-1 border-2 border-gray-200 hover:border-gray-300 text-gray-700 font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center">
                             Back to Shop
                         </a>

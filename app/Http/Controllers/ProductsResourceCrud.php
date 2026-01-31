@@ -15,7 +15,8 @@ class ProductsResourceCrud extends Controller
      */
     public function index()
     {
-
+        $products = Product::all();
+        return view("ProductsByCards", compact("products"));
     }
     /**
      * Show the form for creating a new resource.
@@ -77,7 +78,8 @@ class ProductsResourceCrud extends Controller
      */
     public function show(string $id)
     {
-
+        $product = Product::findOrFail($id);
+        return view('showProduct', ['pro' => $product]);
     }
 
     /**
@@ -141,7 +143,6 @@ class ProductsResourceCrud extends Controller
         $Produit->save();
         return back()->with('successupdate', 'You have successfully updated a product.');
     }
-
     /**
      * Remove the specified resource from storage.
      */
@@ -165,10 +166,8 @@ class ProductsResourceCrud extends Controller
         if ($request->has('category') && $request->filled('category')) { // category of select 
             $query->where('categorie', $request->category);
         }
-
         $products = $query->paginate(10);
         $categories = Product::select('categorie')->distinct()->orderBy('categorie')->get();
-
         return view('espaceclient', [
             'prod' => $products,
             'categories' => $categories
