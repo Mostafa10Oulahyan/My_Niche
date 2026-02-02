@@ -114,9 +114,8 @@
             class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Shop</a> --}}
         <a href="/about" class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">About
             Us</a>
-        <a href="{{route('web.products.index')}}"
+        <a href="{{route('visiteurs.products')}}"
             class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Products</a>
-
 
         @if(Auth::user())
             @if(Auth::user()->role === 'ADMIN')
@@ -128,7 +127,8 @@
             @if(Auth::user()->role === 'USER')
                 <a href="/espaceclient"
                     class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Client Space</a>
-            @endif
+                    <a href="{{ route("email.form") }}" class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Contact</a>
+                    @endif
         @endif
 
 
