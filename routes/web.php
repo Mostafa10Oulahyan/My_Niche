@@ -59,5 +59,8 @@ Route::middleware('useruser')->group(function () {
     Route::post('/send/email', [EmailController::class, 'sendEmail'])->name('send.email');
     Route::get('/espaceclient', [ProductsResourceCrud::class, 'espaceclient']);
 });
-
+Route::get("cart", [ProductsResourceCrud::class, 'cart'])->name('cart');
+Route::get("cart/{idproduct}", [ProductsResourceCrud::class, 'addTocart'])->name('addTocart');
+Route::patch("update-cart", [ProductsResourceCrud::class, 'updateCart'])->name('updateCart');
+Route::delete("remove-from-cart", [ProductsResourceCrud::class, 'removeCart'])->name('removeCart');
 require __DIR__ . '/auth.php';

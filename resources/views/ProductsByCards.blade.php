@@ -41,9 +41,9 @@
                                 <p class="text-xl font-bold text-gray-800">{{ number_format($p->prix, 2) }} DH</p>
                             @endif
                         </div>
-                        <button class="py-2 bg-blue-600 rounded-lg text-white px-4 font-bold hover:bg-blue-700 transition-colors duration-200 ">
+                        <a href="{{ route('addTocart', $p->id) }}" data-url="{{ route('addTocart', $p->id) }}" class="add-to-cart-btn py-2 bg-blue-600 rounded-lg text-white px-4 font-bold hover:bg-blue-700 transition-colors duration-200 cursor-pointer">
                             Add To Cart
-                        </button>
+                        </a>
                         
                         
                     </div>
@@ -52,4 +52,45 @@
         @endforeach
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        $('.add-to-cart-btn').click(function(e) {
+            e.preventDefault();
+            var url = $(this).data('url');
+            
+            // Visual feedback for button click
+            var btn = $(this);
+            var originalText = btn.text();
+            btn.text('Adding...');
+            
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(response) {
+                    // Restore button text
+                    btn.text(originalText);
+                    
+                    // Call the global cart update function
+                    if (window.updateCartCount) {
+                        window.updateCartCount();
+                    }
+                    
+                    // Optional: Show a quick success feedback on the button
+                    btn.removeClass('bg-blue-600').addClass('bg-green-600').text('Added!');
+                    setTimeout(function() {
+                        btn.removeClass('bg-green-600').addClass('bg-blue-600').text(originalText);
+                    }, 2000);
+                },
+                error: function(xhr) {
+                    btn.text(originalText);
+                    console.error('Error adding to cart');
+                    alert('Something went wrong. Please try again.');
+                }
+            });
+        });
+    });
+</script>
 @endsection

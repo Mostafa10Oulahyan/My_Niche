@@ -27,7 +27,8 @@
                 @if(Auth::user()->role === 'USER')
                     <a href="/espaceclient" class="text-text-main hover:text-eco-green transition-colors font-medium">Client
                         Space</a>
-                    <a href="{{ route("email.form") }}" class="text-text-main hover:text-eco-green transition-colors font-medium">Contact</a>
+                    <a href="{{ route("email.form") }}"
+                        class="text-text-main hover:text-eco-green transition-colors font-medium">Contact</a>
                     <!-- <a href="{{ url("/email") }}" class="text-text-main hover:text-eco-green transition-colors font-medium">Contact</a> -->
                 @endif
             @endif
@@ -68,7 +69,7 @@
                                         @csrf
 
                                         <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                                            this.closest('form').submit();">
+                                                                                            this.closest('form').submit();">
                                             {{ __('Log Out') }}
                                         </x-dropdown-link>
                                     </form>
@@ -86,12 +87,16 @@
                 </div>
             @endif
             <button class="relative p-2 hover:bg-section-bg rounded-full transition-colors">
-                <svg class="w-6 h-6 text-text-main" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                </svg>
-                <span id="cartCount"
-                    class="absolute -top-1 -right-1 bg-eco-green text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                <a href="{{ route("cart") }}">
+                    <!-- <a href="{{ url("/cart") }}"> -->
+
+                    <svg class="w-6 h-6 text-text-main" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span id="cartCount"
+                        class="absolute -top-1 -right-1 bg-eco-green text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                </a>
             </button>
 
             <!-- Mobile Menu Button -->
@@ -127,18 +132,18 @@
             @if(Auth::user()->role === 'USER')
                 <a href="/espaceclient"
                     class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Client Space</a>
-                    <a href="{{ route("email.form") }}" class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Contact</a>
-                    @endif
+                <a href="{{ route("email.form") }}"
+                    class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">Contact</a>
+            @endif
         @endif
-
-
         @if (Route::has('login'))
             <div class="pt-4 border-t border-gray-200">
                 @auth
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                                            this.closest('form').submit();"
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                                                                                            this.closest('form').submit();"
                             class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">
                             {{ __('Log Out') }}
                         </a>
@@ -176,7 +181,7 @@
         cartCount.textContent = currentCount;
 
         // Add animation
-        cartCount.classList.add('scale-125');
+        cartCount.classList.add('scale-125', 'transition-transform', 'duration-200');
         setTimeout(() => {
             cartCount.classList.remove('scale-125');
         }, 200);
