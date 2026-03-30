@@ -33,7 +33,58 @@
                 @endif
             @endif
         </div>
+        <!-- Language Switcher -->
+        <!-- Language Switcher -->
+        <div x-data="{ 
+            open: false, 
+            locale: '{{ App::getLocale() }}',
+            languages: {
+                'en': { name: 'English', flag: 'us' },
+                'fr': { name: 'Français', flag: 'fr' },
+                'ar': { name: 'العربية', flag: 'ma' }
+            },
+            toggle() { this.open = !this.open },
+            close() { this.open = false },
+            select(lang) { 
+                window.location.href = '/' + lang;
+            }
+        }" @click.outside="close()" class="relative">
 
+            <button @click="toggle()"
+                class="flex items-center space-x-2 px-4 py-2 rounded-full bg-white/50 hover:bg-white/80 backdrop-blur-sm border border-gray-200 shadow-sm transition-all duration-300 group">
+                <span x-text="languages[locale].flag" class="text-lg shadow-sm rounded-full"></span>
+                <span x-text="languages[locale].name"
+                    class="font-medium text-text-main group-hover:text-eco-green transition-colors"></span>
+                <svg class="w-4 h-4 text-gray-500 group-hover:text-eco-green transition-colors transform duration-300"
+                    :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
+
+            <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 scale-95 -translate-y-2"
+                x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+                x-transition:leave-end="opacity-0 scale-95 -translate-y-2"
+                class="absolute right-0 mt-2 w-48 bg-white/90 backdrop-blur-md rounded-xl shadow-lg border border-white/20 overflow-hidden z-50">
+
+                <template x-for="(lang, key) in languages" :key="key">
+                    <button @click="select(key)"
+                        class="w-full flex items-center space-x-3 px-4 py-3 hover:bg-eco-green/10 transition-colors duration-200 group border-b last:border-0 border-gray-100/50">
+                        <span x-text="lang.flag" class="text-xl"></span>
+                        <span x-text="lang.name" class="font-medium text-gray-700 group-hover:text-eco-green"
+                            :class="{ 'text-eco-green': locale === key }"></span>
+                        <span x-show="locale === key" class="ml-auto text-eco-green">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                </template>
+            </div>
+        </div>
         <!-- Cart & Actions -->
         <div class="flex items-center space-x-4">
             @if (Route::has('login'))
@@ -68,8 +119,9 @@
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
 
-                                        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                                                            this.closest('form').submit();">
+                                        <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                                                                                    this.closest('form').submit();">
                                             {{ __('Log Out') }}
                                         </x-dropdown-link>
                                     </form>
@@ -143,7 +195,7 @@
                         @csrf
                         <a href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                                                                                            this.closest('form').submit();"
+                                                                                                                                    this.closest('form').submit();"
                             class="block py-2 text-text-main hover:text-eco-green transition-colors font-medium">
                             {{ __('Log Out') }}
                         </a>
