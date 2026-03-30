@@ -63,10 +63,10 @@ Route::get("cart", [ProductsResourceCrud::class, 'cart'])->name('cart');
 Route::get("cart/{idproduct}", [ProductsResourceCrud::class, 'addTocart'])->name('addTocart');
 Route::patch("update-cart", [ProductsResourceCrud::class, 'updateCart'])->name('updateCart');
 Route::delete("remove-from-cart", [ProductsResourceCrud::class, 'removeCart'])->name('removeCart');
+require __DIR__ . '/auth.php';
 Route::get('/{lang?}', function ($lang = 'en') {
     if (in_array($lang, ['en', 'fr', 'ar'])) {
         App::setLocale($lang);
     }
     return view('Home');
-});
-require __DIR__ . '/auth.php';
+})->where('lang', 'en|fr|ar');
